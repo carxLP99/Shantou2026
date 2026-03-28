@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Clock, Train, Utensils, Hotel, Camera, Map as MapIcon, Smile } from 'lucide-react';
+import { MapPin, Clock, Train, Utensils, Hotel, Camera, Map as MapIcon, Smile, X, ZoomIn } from 'lucide-react';
 
 // 定義行程資料結構
 type EventType = 'transport' | 'food' | 'hotel' | 'activity';
@@ -28,14 +28,11 @@ interface DayPlan {
 // 配合可愛風格重新定義馬卡龍色系
 const themeClasses = {
   pink: { cardBg: 'bg-[#FFE4E8]', pillBg: 'bg-[#FF7EA5]', textMain: 'text-[#2D2D42]', dot: 'bg-[#FF7EA5]' },
-  blue: { cardBg: 'bg-[#EBF5FF]', pillBg: 'bg-[#60A5FA]', textMain: 'text-[#2D2D42]', dot: 'bg-[#FF7EA5]' }, // Fixed dot color for blue to be consistent with pink in original code provided, or actually let's keep it as provided
+  blue: { cardBg: 'bg-[#EBF5FF]', pillBg: 'bg-[#60A5FA]', textMain: 'text-[#2D2D42]', dot: 'bg-[#60A5FA]' },
   orange: { cardBg: 'bg-[#FFF0E6]', pillBg: 'bg-[#FB923C]', textMain: 'text-[#2D2D42]', dot: 'bg-[#FB923C]' },
   emerald: { cardBg: 'bg-[#E8FBF0]', pillBg: 'bg-[#34D399]', textMain: 'text-[#2D2D42]', dot: 'bg-[#34D399]' },
   purple: { cardBg: 'bg-[#F3E8FF]', pillBg: 'bg-[#A78BFA]', textMain: 'text-[#2D2D42]', dot: 'bg-[#A78BFA]' },
 };
-
-// Note: I noticed a small inconsistency in the user's provided code for themeClasses.blue.dot, 
-// but I will stick to the provided code as much as possible.
 
 const itineraryData: DayPlan[] = [
   {
@@ -52,6 +49,7 @@ const itineraryData: DayPlan[] = [
         type: 'transport', 
         title: '深圳羅湖出發', 
         desc: '搭乘 G6476 車次，預計 12:09 到達汕頭站',
+        // herehere 📸 👇 圖片加入範例 (已全面統一為小寫 .jpg) 👇
         images: ['/images/day1-1-1.jpg', '/images/day1-1-2.jpg', '/images/day1-1-3.jpg']
       },
       { 
@@ -60,6 +58,7 @@ const itineraryData: DayPlan[] = [
         type: 'transport', 
         title: '到達汕頭站', 
         desc: '一出站就手刀打車，直奔美味餐廳！🚕💨',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day1-2-1.jpg', '/images/day1-2-2.jpg', '/images/day1-2-3.jpg']
       },
       { 
@@ -69,6 +68,7 @@ const itineraryData: DayPlan[] = [
         title: '午餐：偉記牛肉', 
         desc: '金鴻公路店享受正宗牛肉火鍋', 
         location: '偉記牛肉(金鴻公路店)',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day1-3-1.jpg', '/images/day1-3-2.jpg', '/images/day1-3-3.jpg']
       },
       { 
@@ -78,6 +78,7 @@ const itineraryData: DayPlan[] = [
         title: '酒店 Check-in', 
         desc: '辦理入住，放下行李整理休息', 
         location: '米格美居(萬象城龍眼南路店)',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day1-4-1.jpg', '/images/day1-4-2.jpg', '/images/day1-4-3.jpg']
       },
       { 
@@ -86,6 +87,7 @@ const itineraryData: DayPlan[] = [
         type: 'activity', 
         title: '汕頭小公園行街', 
         desc: '體驗老城區風情與歷史建築',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day1-5-1.jpg', '/images/day1-5-2.jpg', '/images/day1-5-3.jpg']
       },
       { 
@@ -95,6 +97,7 @@ const itineraryData: DayPlan[] = [
         title: '晚餐：萬隆砂鍋粥', 
         desc: '可預先網上取票，餐後回酒店休息', 
         location: '非遺·萬隆即煮砂鍋粥',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day1-6-1.jpg', '/images/day1-6-2.jpg', '/images/day1-6-3.jpg']
       }
     ]
@@ -114,6 +117,7 @@ const itineraryData: DayPlan[] = [
         title: '早餐：伊早豆漿', 
         desc: '外賣點餐，充滿活力的早晨', 
         location: '伊早豆漿(金園店)',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day2-1-1.jpg', '/images/day2-1-2.jpg', '/images/day2-1-3.jpg']
       },
       { 
@@ -122,6 +126,7 @@ const itineraryData: DayPlan[] = [
         type: 'transport', 
         title: '前往南澳島', 
         desc: '上車搭車出發前往美麗的南澳島',
+        // herehere 📸 👇 圖片加入範例 👇
          images: ['/images/day2-2-1.jpg', '/images/day2-2-2.jpg', '/images/day2-2-3.jpg']
       },
       { 
@@ -131,6 +136,7 @@ const itineraryData: DayPlan[] = [
         title: '午餐：胖哥有炸', 
         desc: '品嚐新鮮海鮮與特色小炒', 
         location: '胖哥有炸·海鮮小炒',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day2-3-1.jpg', '/images/day2-3-2.jpg', '/images/day2-3-3.jpg']
       },
       { 
@@ -139,6 +145,7 @@ const itineraryData: DayPlan[] = [
         type: 'transport', 
         title: '離開南澳島', 
         desc: '結束島上行程，乘車返回市區',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day2-4-1.jpg', '/images/day2-4-2.jpg', '/images/day2-4-3.jpg']
       },
       { 
@@ -148,6 +155,7 @@ const itineraryData: DayPlan[] = [
         title: '晚餐：潮鹵道火鍋', 
         desc: '享用特色鹵水火鍋，餐後回酒店休息', 
         location: '潮鹵道非遺鹵水火鍋(總店)',
+        // herehere 📸 👇 圖片加入範例 👇
          images: ['/images/day2-5-1.jpg', '/images/day2-5-2.jpg', '/images/day2-5-3.jpg']
       }
     ]
@@ -166,6 +174,7 @@ const itineraryData: DayPlan[] = [
         type: 'food', 
         title: '早餐：小吳腸粉', 
         desc: '外賣點餐，必吃特色腸粉',
+        // herehere 📸 👇 圖片加入範例 👇
          images: ['/images/day3-1-1.jpg', '/images/day3-1-2.jpg', '/images/day3-1-3.jpg']
       },
       { 
@@ -174,6 +183,7 @@ const itineraryData: DayPlan[] = [
         type: 'transport', 
         title: '前往潮州古城', 
         desc: '打車前往潮州市區',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day3-2-1.jpg', '/images/day3-2-2.jpg', '/images/day3-2-3.jpg']
       },
       { 
@@ -183,6 +193,7 @@ const itineraryData: DayPlan[] = [
         title: '午餐：潮鎮老尾牛雜', 
         desc: '古城內的在地美味', 
         location: '潮鎮老尾牛雜(環城西路店)',
+        // herehere 📸 👇 圖片加入範例 👇
          images: ['/images/day3-3-1.jpg', '/images/day3-3-2.jpg', '/images/day3-3-3.jpg']
       },
       { 
@@ -191,6 +202,7 @@ const itineraryData: DayPlan[] = [
         type: 'activity', 
         title: '古城行街', 
         desc: '漫步潮州古城，感受歷史底蘊',
+        // herehere 📸 👇 圖片加入範例 👇
          images: ['/images/day3-4-1.jpg', '/images/day3-4-2.jpg', '/images/day3-4-3.jpg']
       },
       { 
@@ -200,6 +212,7 @@ const itineraryData: DayPlan[] = [
         title: '晚餐：劉卜鹵鵝', 
         desc: '品嚐全國首店的道地鹵鵝', 
         location: '劉卜鹵鵝(全國首店)',
+        // herehere 📸 👇 圖片加入範例 👇
          images: ['/images/day3-5-1.jpg', '/images/day3-5-2.jpg', '/images/day3-5-3.jpg']
       },
       { 
@@ -208,6 +221,7 @@ const itineraryData: DayPlan[] = [
         type: 'transport', 
         title: '返回汕頭', 
         desc: '打車回汕頭酒店休息',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day3-6-1.jpg', '/images/day3-6-2.jpg', '/images/day3-6-3.jpg']
       }
     ]
@@ -227,6 +241,7 @@ const itineraryData: DayPlan[] = [
         title: '早餐：海記豬血湯', 
         desc: '在地人的暖胃早餐', 
         location: '海記豬血湯(龍眼園店)',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day4-1-1.jpg', '/images/day4-1-2.jpg', '/images/day4-1-3.jpg']
       },
       { 
@@ -235,6 +250,7 @@ const itineraryData: DayPlan[] = [
         type: 'transport', 
         title: '長輩回深圳', 
         desc: '7叔7嬸搭乘 D7106 車次 (10:37 - 13:21)',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day4-2-1.jpg', '/images/day4-2-2.jpg', '/images/day4-2-3.jpg']
       },
       { 
@@ -244,6 +260,7 @@ const itineraryData: DayPlan[] = [
         title: '市區逛街採買', 
         desc: '其他人至龍眼南路、萬象城、潤街逛街', 
         location: '萬象城周邊',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day4-3-1.jpg', '/images/day4-3-2.jpg', '/images/day4-3-3.jpg']
       },
       { 
@@ -253,6 +270,7 @@ const itineraryData: DayPlan[] = [
         title: '買手信：沈振興丸店', 
         desc: '購買著名的潮汕肉丸帶回家', 
         location: '沈振興丸店',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day4-4-1.jpg', '/images/day4-4-2.jpg', '/images/day4-4-3.jpg']
       },
       { 
@@ -262,6 +280,7 @@ const itineraryData: DayPlan[] = [
         title: '晚餐：添旺牛店', 
         desc: '潮汕鮮烤牛肉完美收尾', 
         location: '添旺牛店·潮汕鮮烤牛肉(高鐵站店)',
+        // herehere 📸 👇 圖片加入範例 👇
          images: ['/images/day4-5-1.jpg', '/images/day4-5-2.jpg', '/images/day4-5-3.jpg']
       }
     ]
@@ -281,6 +300,7 @@ const itineraryData: DayPlan[] = [
         title: '早餐：良心腸粉', 
         desc: '離開前的最後一頓在地美食', 
         location: '良心腸粉·粿汁(萬象城店)',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day5-1-1.jpg', '/images/day5-1-2.jpg', '/images/day5-1-3.jpg']
       },
       { 
@@ -289,6 +309,7 @@ const itineraryData: DayPlan[] = [
         type: 'hotel', 
         title: '酒店 Check out', 
         desc: '辦理退房並打車到汕頭站',
+        // herehere 📸 👇 圖片加入範例 👇
         images: ['/images/day5-2-1.jpg', '/images/day5-2-2.jpg', '/images/day5-2-3.jpg']
       },
       { 
@@ -297,6 +318,7 @@ const itineraryData: DayPlan[] = [
         type: 'transport', 
         title: '搭高鐵回深', 
         desc: '搭乘 D7414 車次，13:39 抵達深圳北站',
+        // herehere 📸 👇 圖片加入範例 👇
          images: ['/images/day5-3-1.jpg', '/images/day5-3-2.jpg', '/images/day5-3-3.jpg']
       }
     ]
@@ -316,6 +338,8 @@ const EventIcon = ({ type, colorClass }: { type: EventType, colorClass: string }
 
 export default function App() {
   const [activeTabIndex, setActiveTabIndex] = useState(0);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null); // 新增：用來記錄哪張圖片被點擊放大
+  
   const activeData = itineraryData[activeTabIndex];
   const theme = themeClasses[activeData.colorTheme];
 
@@ -389,6 +413,7 @@ export default function App() {
       <main className="max-w-2xl mx-auto relative z-10 flex flex-col items-center">
         
         {/* --- 大橫幅英雄卡片 (Hero Card) --- */}
+        {/* 新增了 flex flex-col items-center text-center 來讓內容完美置中，並加大了 padding (p-8) */}
         <div className={`w-[92%] ${theme.cardBg} border-[6px] border-white rounded-[2.5rem] p-8 shadow-sm relative mt-2 transition-colors duration-500 flex flex-col items-center text-center`}>
            <svg className="absolute top-4 right-4 w-32 h-32 text-white opacity-40" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
            
@@ -401,6 +426,7 @@ export default function App() {
               </span>
            </div>
            
+           {/* 標題字體大幅放大至 text-[2.5rem] (約40px) 到 text-[2.8rem] (約45px) */}
            <h2 className="text-[2.5rem] sm:text-[2.8rem] leading-[1.3] font-black text-[#2D2D42] mb-6 whitespace-pre-line relative z-10">
              {activeData.title}
            </h2>
@@ -409,7 +435,7 @@ export default function App() {
              <Clock className="text-[#FF4D82] w-6 h-6" strokeWidth={2.5} /> {activeData.events.length} STOPS TODAY!
            </div>
 
-           {/* 對話氣泡 */}
+           {/* 對話氣泡 (同步放大並強制靠左對齊文字) */}
            <div className="absolute -bottom-8 -right-2 sm:-right-6 bg-white p-5 rounded-[1.5rem] shadow-lg border-2 border-[#FFE4E8] w-[200px] sm:w-[240px] z-20 animate-fade-in-up text-left">
              <div className="text-[16px] sm:text-[18px] font-black text-[#334155] leading-snug">
                {activeData.quote}
@@ -419,7 +445,7 @@ export default function App() {
            </div>
         </div>
 
-        {/* --- 膠囊型日期導覽列 (Tab Bar) --- */}
+        {/* --- 膠囊型日期導覽列 (Tab Bar) - 平均分配寬度，不需滑動 --- */}
         <div className="w-[92%] mt-10 mb-6 bg-white rounded-[3rem] shadow-md border-2 border-[#F8FAFC] p-1.5 flex justify-between items-center relative z-20">
           {itineraryData.map((tab, index) => {
             const isActive = activeTabIndex === index;
@@ -448,72 +474,86 @@ export default function App() {
           })}
         </div>
 
-        {/* --- 時間軸列表 --- */}
-        <div className="w-full px-4 mt-4 space-y-8">
+        {/* --- 時間軸列表 (維持長輩友善大字體) --- */}
+        <div className="w-full px-2 sm:px-4 mt-4 space-y-6 sm:space-y-8">
           {activeData.events.map((event, index) => (
             <div 
               key={event.id} 
-              className="flex gap-4 animate-fade-in-up w-full" 
+              className="flex gap-3 sm:gap-4 animate-fade-in-up w-full" 
               style={{ animationDelay: `${index * 80}ms`, animationFillMode: 'both' }}
             >
               {/* 左側時間與連接線 */}
-              <div className="flex flex-col items-center w-16 flex-shrink-0 mt-3">
-                <span className="text-xl font-black text-[#94A3B8] text-center leading-tight">
+              <div className="flex flex-col items-center w-12 sm:w-16 flex-shrink-0 mt-3">
+                <span className="text-lg sm:text-xl font-black text-[#94A3B8] text-center leading-tight">
                   {event.time.replace(' ', '\n')}
                 </span>
                 {index !== activeData.events.length - 1 && (
-                  <div className={`w-2 h-full ${theme.cardBg} my-4 rounded-full transition-colors duration-500`}></div>
+                  <div className={`w-1.5 sm:w-2 h-full ${theme.cardBg} my-3 sm:my-4 rounded-full transition-colors duration-500`}></div>
                 )}
               </div>
 
-              {/* 右側資訊卡片 */}
-              <div className={`flex-1 bg-white p-7 rounded-[2.5rem] shadow-sm border-[3px] border-[#F1F5F9] hover:border-[#FFE4E8] transition-all relative overflow-hidden group`}>
-                <div className="flex items-start gap-5 relative z-10">
-                  <div className={`p-4 rounded-[1.5rem] ${theme.cardBg} mt-0.5 transition-colors duration-500`}>
+              {/* 右側資訊卡片 (在手機上微調 padding) */}
+              <div className={`flex-1 bg-white p-5 sm:p-7 rounded-[2rem] sm:rounded-[2.5rem] shadow-sm border-[3px] border-[#F1F5F9] hover:border-[#FFE4E8] transition-all relative overflow-hidden group`}>
+                <div className="flex items-start gap-4 sm:gap-5 relative z-10">
+                  <div className={`p-3 sm:p-4 rounded-[1.2rem] sm:rounded-[1.5rem] ${theme.cardBg} mt-0.5 transition-colors duration-500`}>
                     <EventIcon type={event.type} colorClass={theme.textMain} />
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-black text-[#1E293B] text-2xl mb-3">{event.title}</h3>
-                    <p className="text-[#64748B] text-xl leading-relaxed mb-5 font-bold">{event.desc}</p>
+                    <h3 className="font-black text-[#1E293B] text-xl sm:text-2xl mb-2 sm:mb-3">{event.title}</h3>
+                    <p className="text-[#64748B] text-lg sm:text-xl leading-relaxed mb-4 sm:mb-5 font-bold">{event.desc}</p>
                     
                     {event.location && (
-                      <div className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl ${theme.cardBg} text-[#475569] text-lg font-black transition-colors duration-500`}>
-                        <MapPin className="w-6 h-6 text-[#FF4D82]" />
+                      <div className={`inline-flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl ${theme.cardBg} text-[#475569] text-base sm:text-lg font-black transition-colors duration-500`}>
+                        <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-[#FF4D82]" />
                         {event.location}
                       </div>
                     )}
                   </div>
                 </div>
 
-                {/* 圖片顯示區域 */}
-                <div className="mt-6 w-full relative z-10">
-                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 scrollbar-hide pb-2">
+                {/* ========================================================= */}
+                {/* herehere 📸 👇👇👇 圖片顯示區域 👇👇👇 📸 */}
+                {/* ========================================================= */}
+                {/* 手機版：利用 -mx-5 px-5 突破卡片邊界，讓圖片寬度最大化 */}
+                <div className="mt-5 sm:mt-6 w-full relative z-10 -mx-5 px-5 sm:-mx-7 sm:px-7">
+                  <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 sm:gap-4 scrollbar-hide pb-2 sm:pb-3">
                     
                     {event.images && event.images.length > 0 ? (
+                      /* herehere ✅ 真實照片顯示區 */
                       event.images.map((imgSrc, imgIdx) => (
-                        <div key={imgIdx} className={`w-full flex-shrink-0 snap-center aspect-[4/3] rounded-[1.5rem] border-[4px] border-white shadow-sm overflow-hidden relative`}>
-                          <img src={imgSrc} alt={`${event.title} 照片 ${imgIdx + 1}`} className="w-full h-full object-cover" />
-                          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 px-3 py-1 rounded-full border border-white/50 bg-black/40 text-white text-sm font-bold backdrop-blur-sm whitespace-nowrap">
-                            ⟵ 左右滑動瀏覽 ⟶
+                        <div 
+                          key={imgIdx} 
+                          onClick={() => setZoomedImage(imgSrc)}
+                          className={`w-[85%] sm:w-[90%] flex-shrink-0 snap-center aspect-square sm:aspect-[4/3] rounded-[1.5rem] border-[3px] sm:border-[4px] border-white shadow-md overflow-hidden relative cursor-pointer group`}
+                        >
+                          <img src={imgSrc} alt={`${event.title} 照片 ${imgIdx + 1}`} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                          <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors"></div>
+                          <div className="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-white/50 bg-black/50 text-white text-[13px] sm:text-sm font-bold backdrop-blur-md flex items-center gap-1.5 whitespace-nowrap">
+                            <ZoomIn className="w-4 h-4" /> 點擊放大
                           </div>
                         </div>
                       ))
                     ) : (
+                      /* herehere ❌ 預設相機佔位圖 */
                       [1, 2, 3].map((imgIdx) => (
                         <div 
                           key={imgIdx} 
-                          className={`w-full flex-shrink-0 snap-center aspect-[4/3] rounded-[1.5rem] ${theme.cardBg} border-[4px] border-white shadow-sm flex flex-col items-center justify-center gap-2 overflow-hidden relative img-placeholder-group`}
+                          className={`w-[85%] sm:w-[90%] flex-shrink-0 snap-center aspect-square sm:aspect-[4/3] rounded-[1.5rem] ${theme.cardBg} border-[3px] sm:border-[4px] border-white shadow-md flex flex-col items-center justify-center gap-2 overflow-hidden relative img-placeholder-group`}
                         >
-                          <Camera className={`w-12 h-12 ${theme.textMain} opacity-30`} strokeWidth={2.5} />
-                          <span className={`text-lg font-black ${theme.textMain} opacity-30`}>預留照片區 {imgIdx} / 3</span>
-                          <div className={`px-3 py-1 mt-2 rounded-full border-2 border-white/40 text-sm font-bold ${theme.textMain} opacity-40 flex items-center gap-2`}>
-                            ⟵ 左右滑動瀏覽 ⟶
-                          </div>
+                          <Camera className={`w-10 h-10 sm:w-12 sm:h-12 ${theme.textMain} opacity-30`} strokeWidth={2.5} />
+                          <span className={`text-base sm:text-lg font-black ${theme.textMain} opacity-30`}>預留照片 {imgIdx} / 3</span>
+                          <span className={`text-[10px] sm:text-sm font-bold ${theme.textMain} opacity-40 px-2 text-center`}>
+                            herehere (請至上方加入 images)
+                          </span>
                         </div>
                       ))
                     )}
                   </div>
                 </div>
+                {/* ========================================================= */}
+                {/* herehere 📸 👆👆👆 圖片顯示區域結束 👆👆👆 📸 */}
+                {/* ========================================================= */}
+                
               </div>
             </div>
           ))}
@@ -525,6 +565,27 @@ export default function App() {
         <Smile className="text-white w-9 h-9" strokeWidth={2.5} />
       </button>
 
+      {/* --- 🔎 點擊放大的全螢幕看圖 Modal --- */}
+      {zoomedImage && (
+        <div 
+          className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex flex-col justify-center items-center p-4 animate-fade-in-up"
+          onClick={() => setZoomedImage(null)}
+        >
+          <button className="absolute top-6 right-6 text-white bg-white/20 p-2.5 rounded-full hover:bg-white/40 transition-colors z-[101]">
+            <X className="w-7 h-7" strokeWidth={2.5} />
+          </button>
+          <img 
+            src={zoomedImage} 
+            alt="放大照片" 
+            className="max-w-full max-h-[85vh] object-contain rounded-2xl shadow-2xl relative z-[101]" 
+            onClick={(e) => e.stopPropagation()} // 避免點擊圖片本身時關閉
+          />
+          <p className="text-white/80 font-bold mt-5 text-sm sm:text-lg flex items-center gap-2">
+            <Smile className="w-5 h-5" /> 點擊背景關閉
+          </p>
+        </div>
+      )}
+
       {/* 注入自訂動畫 CSS */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes fadeInUp {
@@ -535,6 +596,7 @@ export default function App() {
           animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         
+        /* 閃電發光動畫 */
         @keyframes flash {
           0%, 85%, 100% { opacity: 0; transform: scale(1); }
           88%, 94% { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 8px rgba(255,209,0,0.6)); }
@@ -547,6 +609,7 @@ export default function App() {
           animation: flash 5s infinite 2.5s;
         }
 
+        /* 上下左右漂浮搖擺動畫 (3種不同軌跡) */
         @keyframes float-1 {
           0%, 100% { transform: translate(0px, 0px); }
           33% { transform: translate(15px, -10px); }
